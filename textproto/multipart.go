@@ -258,6 +258,9 @@ func (r *MultipartReader) NextPart() (*Part, error) {
 			// a fmt-wrapped one.
 			return nil, io.EOF
 		}
+		if err == io.EOF {
+			return nil, io.EOF
+		}
 		if err != nil {
 			return nil, fmt.Errorf("multipart: NextPart: %v", err)
 		}
